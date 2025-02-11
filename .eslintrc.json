@@ -1,0 +1,234 @@
+{
+    "env": {
+        "browser": true,
+        "es6": true,
+        "jest": true
+    },
+    "extends": [
+        "airbnb",
+        "airbnb/hooks",
+        "prettier",
+        "plugin:react/recommended",
+        "plugin:@typescript-eslint/recommended",
+        "plugin:prettier/recommended"
+    ],
+    "globals": {
+        "Atomics": "readonly",
+        "SharedArrayBuffer": "readonly"
+    },
+    "parser": "@typescript-eslint/parser",
+    "parserOptions": {
+        "project": "./tsconfig.json",
+        "ecmaFeatures": {
+            "jsx": true
+        },
+        "ecmaVersion": 2018,
+        "sourceType": "module"
+    },
+    "plugins": [
+        "react",
+        "@typescript-eslint",
+        "jsx-a11y",
+        "prettier",
+        "react-hooks"
+    ],
+    "settings": {
+        "import/resolver": {
+            "node": {
+                "paths": [
+                    "src"
+                ],
+                "extensions": [
+                    ".js",
+                    ".jsx",
+                    ".ts",
+                    ".tsx"
+                ]
+            }
+        },
+        "import/extensions": [
+            ".js",
+            ".jsx",
+            ".ts",
+            ".tsx"
+        ]
+    },
+    "rules": {
+        "camelcase": "off",
+        "import/prefer-default-export": 0,
+        "@typescript-eslint/camelcase": 0,
+        "no-console": "off",
+        "no-plusplus": 0,
+        "no-use-before-define": "off",
+        "jsx-a11y/media-has-caption": 0,
+        "react/class-methods-use-this": "off",
+        "react/forbid-prop-types": "off",
+        "react/function-component-definition": 0,
+        "jsx-a11y/anchor-is-valid": 0,
+        "jsx-a11y/control-has-associated-label": 0,
+        "jsx-a11y/interactive-supports-focus": 0,
+        "jsx-a11y/no-noninteractive-element-interactions": 0,
+        "jsx-a11y/no-static-element-interactions": 0,
+        "react/max-classes-per-file": 0,
+        "react/no-continue": "off",
+        "react/no-prototype-builtins": "off",
+        "react/no-array-index-key": 0,
+        "jsx-a11y/click-events-have-key-events": 0,
+        "react/no-unstable-nested-components": 0,
+        "@typescript-eslint/no-explicit-any": 0,
+        "react/jsx-props-no-spreading": "off",
+        "react/dot-notation": 0,
+        "react-hooks/rules-of-hooks": "error",
+        "react-hooks/exhaustive-deps": "warn",
+        "consistent-return": "off",
+        "no-underscore-dangle": "off",
+        "radix": "off",
+        "no-restricted-globals": "off",
+        "import/no-cycle": "off",
+        "func-names": "off",
+        "@typescript-eslint/no-empty-function": 0,
+        "no-nested-ternary": "off",
+        "@typescript-eslint/no-use-before-define": [
+            "error"
+        ],
+        "prettier/prettier": [
+            "off"
+        ],
+        "no-param-reassign": [
+            2,
+            {
+                "props": false
+            }
+        ],
+        "react/jsx-no-bind": [
+            2,
+            {
+                "allowArrowFunctions": true,
+                "allowFunctions": true
+            }
+        ],
+        "react/prop-types": [
+            0
+        ],
+        "import/no-unresolved": [
+            1
+        ],
+        "react/state-in-constructor": [
+            0,
+            "never"
+        ],
+        "react/destructuring-assignment": [
+            0,
+            "never"
+        ],
+        "default-param-last": 0,
+        "react/jsx-no-useless-fragment": 0,
+        "dot-notation": 0,
+        "react/no-unknown-property": 0,
+        "react/static-property-placement": [
+            1,
+            "static public field"
+        ],
+        "import/no-extraneous-dependencies": [
+            "error",
+            {
+                "devDependencies": true
+            }
+        ],
+        "no-tabs": [
+            "error",
+            {
+                "allowIndentationTabs": true
+            }
+        ],
+        "react/jsx-filename-extension": [
+            1,
+            {
+                "extensions": [
+                    ".js",
+                    ".jsx",
+                    ".ts",
+                    ".tsx"
+                ]
+            }
+        ],
+        "react/require-default-props": [
+            1,
+            {
+                "forbidDefaultForRequired": false,
+                "ignoreFunctionalComponents": true
+            }
+        ],
+        "react/jsx-wrap-multilines": [
+            "error",
+            {
+                "declaration": false,
+                "assignment": false
+            }
+        ],
+        "react/jsx-one-expression-per-line": [
+            0,
+            {
+                "allow": "single-child"
+            }
+        ],
+        "no-restricted-syntax": [
+            "warn",
+            {
+                "selector": "ForOfStatement",
+                "message": "Use forof"
+            }
+        ],
+        "import/extensions": [
+            "error",
+            "always",
+            {
+                "ts": "never",
+                "tsx": "never",
+                "js": "never",
+                "jsx": "never"
+            }
+        ],
+        "class-methods-use-this": "off",
+        "jsx-a11y/mouse-events-have-key-events": 0,
+        "max-classes-per-file": 0,
+        "no-continue": 0,
+        "guard-for-in": 0,
+        "no-new": 0,
+        "no-prototype-builtins": 0,
+        "no-unsafe-optional-chaining": 0,
+        "react/no-unused-class-component-methods": 1
+    },
+    "overrides": [
+        {
+            "files": [
+                "*.ts",
+                "*.tsx"
+            ],
+            "rules": {
+                "@typescript-eslint/explicit-function-return-type": [
+                    "error"
+                ]
+            }
+        },
+        {
+            "files": [
+                "*.js",
+                "*.jsx"
+            ],
+            "rules": {
+                "@typescript-eslint/explicit-function-return-type": [
+                    "off"
+                ]
+            }
+        },
+        {
+            "files": [
+                "*.js"
+            ],
+            "rules": {
+                "@typescript-eslint/explicit-module-boundary-types": "off"
+            }
+        }
+    ]
+}
