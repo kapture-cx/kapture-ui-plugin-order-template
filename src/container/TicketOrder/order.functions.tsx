@@ -11,8 +11,6 @@ export function convertOrderDataToOrderDisplay(partnerKey: string, rawOrderData:
             return null
         }
 
-        console.log(rawOrderData, "rawOrderData")
-
         const DateFormat = "dddd, MMMM D, YYYY h:mm A"
         const { orders: orderList, genericItemDetails } = rawOrderData ?? {}
         // const clientKey: string = store.getState()?.general?.chatCredentials?.key ?? ""
