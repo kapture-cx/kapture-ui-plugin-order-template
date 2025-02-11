@@ -11,7 +11,7 @@ export function convertOrderDataToOrderDisplay(partnerKey: string, rawOrderData:
             return null
         }
 
-        console.log(rawOrderData, "rawOrderData")
+        // console.log(rawOrderData, "rawOrderData")
 
         const DateFormat = "dddd, MMMM D, YYYY h:mm A"
         const { orders: orderList, genericItemDetails } = rawOrderData ?? {}
