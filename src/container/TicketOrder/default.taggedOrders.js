@@ -1,20 +1,43 @@
-import { FuseLoading } from "@fuse"
-import React, { memo } from "react"
+import React, { memo, useMemo } from "react"
 import { useSelector } from "react-redux"
-import { DefaultOrderInfo } from "@kapture/x"
+import { OrderDetailedView, NoOrder } from "@kapture/x"
+import { ErrorBoundary, FuseSuspense } from "@kapture/utils"
+import { convertOrderDataToOrderDisplay } from "./order.functions"
 
 function DefaultTaggedOrders() {
-    const taggedOrderId = useSelector(({ ticketModule }) => ticketModule?.contacts?.entities?.[ticketModule?.contacts?.selectedContactId]?.orderId ?? null)
-    const ticketDetails = useSelector(({ ticketModule }) => ticketModule?.contacts?.entities?.[ticketModule?.contacts?.selectedContactId] ?? null)
-    const selectedTicketId = useSelector(({ ticketModule }) => ticketModule?.contacts?.selectedContactId ?? null)
+    const ticketId = useSelector(({ ticketModule }) => ticketModule?.contacts?.selectedContactId)
+    const ticketDetails = useSelector(({ ticketModule }) => ticketModule?.contacts?.entities?.[ticketId])
+    const taggedOrderDetails = ticketDetails?.orderJson
 
-    const orderDetail = useSelector(({ ticketModule }) =>
-        ticketModule?.contacts?.entities?.[selectedTicketId]?.genericOrders?.orders?.find?.(order => order.id && taggedOrderId && String(order.id) === String(taggedOrderId))
+    // Pass the same orders Structure to the convertOrderDataToOrderDisplay function to get the same UI components
+    const { orderConfig, data: orderList } = useMemo(() => {
+        const format = {
+            selecteditems: taggedOrderDetails?.selecteditems,
+            orderDetails: taggedOrderDetails,
+        }
+        return convertOrderDataToOrderDisplay("default", format, "tagged") ?? {}
+    }, [taggedOrderDetails])
+
+    if (Array.isArray(orderList) && orderList.length === 0) {
+        return (
+            <div className="h-full">
+                <NoOrder />
+            </div>
+        )
+    }
+    return (
+        <ErrorBoundary>
+            <FuseSuspense loadingProps={{ message: "Loading tagged order detail..." }}>
+                <OrderDetailedView
+                    data={orderList?.[0]}
+                    disableProductListCheckbox
+                    orderDetailConfig={orderConfig?.orderDetailView}
+                    isProductFetching={false}
+                    renderSource="tagged"
+                />
+            </FuseSuspense>
+        </ErrorBoundary>
     )
-
-    if (ticketDetails?.genericOrdersFetching) return <FuseLoading message="Fetching orders..." />
-
-    return <DefaultOrderInfo orderDetails={{ ...orderDetail, ...orderDetail.additional_info }} />
 }
 
 export default memo(DefaultTaggedOrders)
