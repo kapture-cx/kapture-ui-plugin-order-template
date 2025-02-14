@@ -15,10 +15,11 @@ function DefaultTicketOrders() {
     const ticketDetails = useSelector(({ ticketModule }) => ticketModule?.contacts?.entities?.[ticketId])
     const customerId = ticketDetails?.referenceId ?? null
     const taskId = ticketDetails?.id ?? null
-
+    // TODO: To get the default order list, isFetching, IsProductFetching we need to pass the ticketId and viewingOrderId
     const { orders: defaultOrderList, isProductFetching } = useTicketOrders(ticketId, viewingOrderId)
 
     useEffect(() => {
+        // TODO: Intergrate your custom order list here with client specific conditions
         const fetchOrders = async () => {
             const response = await KaptureAPI.getOrders(ticketId, { customer_id: customerId })
             setCustomOrderList(response)
@@ -27,6 +28,7 @@ function DefaultTicketOrders() {
     }, [ticketId, customerId])
 
     const { data: Orderlist, orderConfig } = useMemo(() => {
+        // TODO: Pass the entire order response to the convertOrderDataToOrderDisplay function to get bare UI components
         const orderDetails = {
             ...(customOrderList || defaultOrderList),
         }
@@ -45,19 +47,19 @@ function DefaultTicketOrders() {
                 const selectedProducts = defaultOrderList?.genericItemDetails?.[orderId]
                 const selectedProduct = selectedProducts?.response?.[enquiryId]?.filter(product => selectedItems.includes(product.id))
 
-                // UNTAG if already tagged.
+                // UnTagging of Order
                 if (String(ticketDetails?.orderId) === compiledOrderDetails?.uniqueId) {
                     KaptureAPI.detachOrderFromTicket({ taskId, ticketId, orderId: compiledOrderDetails.uniqueId }, () => {
                         KaptureAPI.updateTicketDetailAPIs(ticketId)
                         store.dispatch(sendNotification("Order UnTagged Successfully!", GLOBAL_NOTI_TYPES.success))
                     })
                 }
-                // TAG if not tagged.
+                // Tagging of Order
                 else {
                     const reqStruct = {
                         task_id: ticketDetails.id,
                         order_id: compiledOrderDetails.uniqueId,
-                        "order-json": JSON.stringify({ selecteditems: [...(selectedProduct ?? [])] }),
+                        "order-json": JSON.stringify({ ...orderDetails, selecteditems: [...(selectedProduct ?? [])] }),
                     }
                     KaptureAPI.orderTag(reqStruct, ticketId, () => {
                         KaptureAPI.updateTicketDetailAPIs(ticketId)
@@ -75,6 +77,7 @@ function DefaultTicketOrders() {
 
             setViewingOrderId(orderId)
 
+            // TODO: Intergrate your custom order details here with client specific conditions
             const ordersList = customOrderList || defaultOrderList
             const selectedOrderDetails = ordersList?.orders?.find(order => String(order.id) === orderId)
             const enquiryId = selectedOrderDetails?.enquiryId
@@ -87,6 +90,7 @@ function DefaultTicketOrders() {
     return (
         <ErrorBoundary>
             <FuseSuspense loadingProps={{ message: "Loading Orders..." }}>
+                {/* TODO: Pass the entire order list, order config, onOrderExpand, handleTagOrder, isProductFetching, taggedOrderId, isOrderTagging, actionButtons */}
                 <OrderList
                     orderList={Orderlist}
                     orderConfig={orderConfig}

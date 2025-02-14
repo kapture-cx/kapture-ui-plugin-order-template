@@ -1,6 +1,5 @@
 import React from "react"
 import { OrderConfig, OrderDataType, OrderListItemType, OrderListCard, OtherOrderCard, OrderProductListType } from "@kapture/redux-store"
-
 import { DetailsView } from "@kapture/x"
 import { Icon } from "@material-ui/core"
 import moment from "moment"
@@ -11,14 +10,12 @@ export function convertOrderDataToOrderDisplay(partnerKey: string, rawOrderData:
             return null
         }
 
-        // console.log(rawOrderData, "rawOrderData")
-
         const DateFormat = "dddd, MMMM D, YYYY h:mm A"
-        const { orders: orderList, genericItemDetails } = rawOrderData ?? {}
-        // const clientKey: string = store.getState()?.general?.chatCredentials?.key ?? ""
+        const { orders: orderList, selecteditems } = rawOrderData ?? {}
 
         if (orderList && Array.isArray(orderList)) {
             const orderListDetailConfig: OrderConfig["orderListView"]["orderDetail"] = {
+                // TODO: Add the details config for the order list view
                 detailsConfig: [
                     {
                         icon: <Icon fontSize="small">person</Icon>,
@@ -55,6 +52,7 @@ export function convertOrderDataToOrderDisplay(partnerKey: string, rawOrderData:
                 primaryKey: "id",
                 showAllColumns: true,
                 columns: [
+                    // TODO: Add the product list config for inside the order detail view
                     {
                         title: "Name",
                         columnKey: "name",
@@ -74,38 +72,14 @@ export function convertOrderDataToOrderDisplay(partnerKey: string, rawOrderData:
                 ],
 
                 getOrderProductDetail: row => {
-                    const {
-                        name,
-                        leadProductParentName,
-                        quantity,
-                        rate,
-                        productAmt,
-                        defectCode,
-                        sectionCode,
-                        repairCode,
-                        productType,
-                        product_size,
-                        product_colour,
-                        product_issue_type,
-                        style_code,
-                        comment,
-                    } = row
-
+                    const { name, leadProductParentName, quantity, rate, productAmt } = row
+                    // TODO: OnClick of Product, open the product detail view
                     const productData = {
                         name,
                         leadProductParentName,
                         quantity,
                         rate,
                         productAmount: productAmt,
-                        defect_code: defectCode,
-                        section_code: sectionCode,
-                        repair_code: repairCode,
-                        product_type: productType,
-                        product_size,
-                        product_colour,
-                        product_issue_type,
-                        style_code,
-                        comment,
                     }
 
                     return (
@@ -126,17 +100,17 @@ export function convertOrderDataToOrderDisplay(partnerKey: string, rawOrderData:
             }
 
             const data: OrderDataType["data"] = orderList.map((orderData): OrderListItemType => {
-                // Order List For Cards
                 const { id, enquiryId, createDate, erpOrderId, deliveryStatus } = orderData ?? {}
 
                 let productList: OrderListItemType["productList"] = null
-                const productDetails = rawOrderData?.genericItemDetails?.[orderData.id]?.response?.[enquiryId]
+                const productDetails = variant === "tagged" ? selecteditems : rawOrderData?.genericItemDetails?.[orderData.id]?.response?.[enquiryId]
 
                 const totalPrice = {
                     total: 0,
                 }
 
                 if (productDetails && Array.isArray(productDetails)) {
+                    // TODO: Define/Add the product list config for inside the order detail view
                     productList = productDetails.map((_product: any): OrderProductListType => {
                         totalPrice.total += _product.rate
                         return {
@@ -145,21 +119,13 @@ export function convertOrderDataToOrderDisplay(partnerKey: string, rawOrderData:
                             quantity: _product?.quantity,
                             rate: _product?.rate,
                             productAmt: _product?.productAmt,
-                            defectCode: _product?.attr29,
-                            sectionCode: _product?.attr30,
-                            repairCode: _product?.attr31,
-                            productType: _product?.attr32,
-                            product_size: _product?.attr1,
-                            product_colour: _product?.attr2,
-                            product_issue_type: _product?.attr4,
-                            style_code: _product?.attr5,
-                            comment: _product?.attr6,
                         }
                     })
                 }
+
+                // TODO: Define/Add the order list cards config for inside the order list view
                 const orderListCards: OrderListCard = {
-                    enquiryId: enquiryId,
-                    order_id: id,
+                    enquiryId,
                     orderId: String(id),
                     price: totalPrice.total,
                     orderDate: moment(createDate).format(DateFormat),
@@ -169,6 +135,7 @@ export function convertOrderDataToOrderDisplay(partnerKey: string, rawOrderData:
 
                 const OrderDetails = orderData
 
+                // TODO: Define/Add the order details config for inside the order detail view
                 const otherOrderCard: OtherOrderCard = {
                     title: "Order Details",
                     data: OrderDetails,
