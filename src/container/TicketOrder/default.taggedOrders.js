@@ -9,6 +9,7 @@ function DefaultTaggedOrders() {
     const ticketDetails = useSelector(({ ticketModule }) => ticketModule?.contacts?.entities?.[ticketId])
     const taggedOrderDetails = ticketDetails?.orderJson
 
+    // Pass the same orders Structure to the convertOrderDataToOrderDisplay function to get the same UI components
     const { orderConfig, data: orderList } = useMemo(() => {
         const format = {
             selecteditems: taggedOrderDetails?.selecteditems,
