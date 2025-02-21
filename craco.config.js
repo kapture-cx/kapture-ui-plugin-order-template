@@ -12,6 +12,8 @@ const filename = "remoteEntry.js"
 // delete dependencies["@kapture/utils"]
 // delete dependencies["@kapture/redux-store"]
 
+const singletonPackages = ["@material-ui/codemod", "@material-ui/core", "@material-ui/icons", "@material-ui/lab", "@material-ui/pickers", "@material-ui/styles", "formik"]
+
 const shared = {
     ...dependencies,
     "@material-ui/core": {
@@ -49,8 +51,15 @@ const shared = {
     "@kapture/redux-store": {
         singleton: true,
         requiredVersion: dependencies["@kapture/redux-store"],
-    }
+    },
 }
+
+singletonPackages.forEach(_package => {
+    shared[_package] = {
+        singleton: true,
+        requiredVersion: dependencies[_package],
+    }
+})
 
 const moduleFederationPluginConfig = {
     name,
