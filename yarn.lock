@@ -2903,20 +2903,20 @@
   resolved "https://registry.yarnpkg.com/@juggle/resize-observer/-/resize-observer-3.4.0.tgz#08d6c5e20cf7e4cc02fd181c4b0c225cd31dbb60"
   integrity sha512-dfLbk+PwWvFzSxwk3n5ySL0hfBog779o8h68wK/7/APo/7cgyWp5jcXockbxdk5kFRkbeXWm4Fbi9FrdN381sA==
 
-"@kapture/redux-store@0.1.119-beta.0":
-  version "0.1.119-beta.0"
-  resolved "https://asia-south1-npm.pkg.dev/sublime-amp-160011/kapture-core-ui/@kapture/redux-store/-/@kapture/redux-store-0.1.119-beta.0.tgz#fb42630c497482cbb77f9656a665e65f9a120dff"
-  integrity sha512-JrspO9Mb5flHd4YUvHX0hDyU7frk166r7YquY+6Tfj9SIePvQJR5ykxLK37uAVkt5nKC5hDH562AlHZ8iODQbQ==
+"@kapture/redux-store@0.1.122":
+  version "0.1.122"
+  resolved "https://asia-south1-npm.pkg.dev/sublime-amp-160011/kapture-core-ui/@kapture/redux-store/-/@kapture/redux-store-0.1.122.tgz#c9554d1bb6f8c0c5c821c842ff00ad6fcf29882f"
+  integrity sha512-uc8T4u4hYlO/XminnGj4sHCAD+m5GvtWSLX1Rl01A7DiHZgG2++3ccBmMdBYY60BqZvbbheH+yWcswFJa9fzNw==
 
-"@kapture/utils@1.2.1-beta.5":
-  version "1.2.1-beta.5"
-  resolved "https://asia-south1-npm.pkg.dev/sublime-amp-160011/kapture-core-ui/@kapture/utils/-/@kapture/utils-1.2.1-beta.5.tgz#36b133ce3c3c059f75808f8237a4bb7dd71eb9e9"
-  integrity sha512-fuY0zDS8vutPNIp6ABrd4T7m1ldJRaawDHhzatmMOXH2rMuzCJpuQehMsbdc1b8mAHObDr9r9QsPqQjMqQm3WA==
+"@kapture/utils@1.2.6":
+  version "1.2.6"
+  resolved "https://asia-south1-npm.pkg.dev/sublime-amp-160011/kapture-core-ui/@kapture/utils/-/@kapture/utils-1.2.6.tgz#f15f1f2893681e7b14210efb6382c4788857a59e"
+  integrity sha512-yST98ZdWXgH8/5iP14YzH4ozZNlCDLTBJyF9t7DC0syBn2+9uJPHQuYs2c8uxn65xiVEhklP7lIbA61NeCMbnQ==
 
-"@kapture/x@0.3.208-beta.1":
-  version "0.3.208-beta.1"
-  resolved "https://asia-south1-npm.pkg.dev/sublime-amp-160011/kapture-core-ui/@kapture/x/-/@kapture/x-0.3.208-beta.1.tgz#8855cc862dba984f9eeb9efc89fde77ca90fdef8"
-  integrity sha512-cQ7bBahqD+AENu4uNt5v1BPPnQhf4yMcxHF9Qh87zUuqFzpGaenkxaz9kc8sOf77TA3rTKQihYbd4Y4H6ZQ1bA==
+"@kapture/x@0.3.212":
+  version "0.3.212"
+  resolved "https://asia-south1-npm.pkg.dev/sublime-amp-160011/kapture-core-ui/@kapture/x/-/@kapture/x-0.3.212.tgz#d527b6127bc447e9502671bbe22ffbe3b9a7e4f4"
+  integrity sha512-V+Ul14ZEIUG6Z5IW69hwWAwikZ2m2VxBc0Os/ZFvZltYm+cGJzW5iiItwg5vhvJiYHkLXHmA17RmKTpB305BBw==
 
 "@leichtgewicht/ip-codec@^2.0.1":
   version "2.0.5"
